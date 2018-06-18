@@ -1,0 +1,173 @@
+<div class="page-wrapper">
+  <!-- Bread crumb -->
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+      <h3 class="text-primary">Dashboard</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Dashboard</li>
+      </ol>
+    </div>
+  </div>
+  <!-- End Bread crumb -->
+  <!-- Container fluid  -->
+  <div class="container-fluid">
+    <!-- Start Page Content -->
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span>
+                <i class="fa fa-usd f-s-40 color-primary"></i>
+              </span>
+            </div>
+            <div class="media-body media-text-right">
+              <h2>{{budget}}</h2>
+              <p class="m-b-0">Budget</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span>
+                <i class="fa fa-shopping-cart f-s-40 color-success"></i>
+              </span>
+            </div>
+            <div class="media-body media-text-right">
+              <h2>1178</h2>
+              <p class="m-b-0">Sales</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span>
+                <i class="fa fa-archive f-s-40 color-warning"></i>
+              </span>
+            </div>
+            <div class="media-body media-text-right">
+              <h2>25</h2>
+              <p class="m-b-0">Stores</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card p-30">
+          <div class="media">
+            <div class="media-left meida media-middle">
+              <span>
+                <i class="fa fa-user f-s-40 color-danger"></i>
+              </span>
+            </div>
+            <div class="media-body media-text-right">
+              <h2>847</h2>
+              <p class="m-b-0">Customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-title">
+            <h4>Liste des depsnes</h4>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Montant</th>
+                    <th>Desciption</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let spent of spents; let i=index" (click)="onSpent(i)">
+                    <th scope="row">{{spent.id}}</th>
+                    <td>{{spent.name}}</td>
+                    <td>{{spent.amount}}</td>
+                    <td>{{spent.description}}</td>
+                    <td>{{spent.date}}</td>
+                    <td>
+                      <button type="button" class="btn btn-success" [routerLink]="['/spent/add']" [queryParams]="{id: i}">
+                        <i class="fa fa-pencil"></i>
+                      </button>
+                      <button type="button" class="btn btn-danger" (click)="onDelete(i)">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <button type="button" class="btn btn-success" (click)="onAddSpent()"> <i class="fa fa-plus"></i>  Ajouter</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row" *ngIf="spentLine != undefined">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-title">
+              <div class="row" >
+                <div class="col-lg-6">
+                    <h4>Detaille de la depense : {{spentLine.name}}</h4>
+                </div>
+                <div class="col-lg-6">
+                    <h4 class="text-danger">TOTAL : {{spentLine.amount}}</h4>
+                  </div>
+              </div>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Montant</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let spent of spentLine.spents">
+                    <th scope="row">{{spent.id}}</th>
+                    <td>{{spent.name}}</td>
+                    <td>{{spent.amount}}</td>
+                    <td>{{spent.description}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- End PAge Content -->
+  </div>
+  <!-- End Container fluid  -->
+  <!-- footer -->
+  <footer class="footer"> © 2018 All rights reserved. Template designed by
+    <a href="https://colorlib.com">Colorlib</a>
+  </footer>
+  <!-- End footer -->
+</div>

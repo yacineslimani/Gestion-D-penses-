@@ -1,0 +1,41 @@
+<!-- Preloader - style you can find in spinners.css -->
+
+<!-- Main wrapper  -->
+<div id="main-wrapper">
+
+  <div class="unix-login">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-lg-4">
+          <div class="login-content card">
+            <div class="login-form">
+              <h4>Login</h4>
+              <span class="help-block" *ngIf="loginStatus">login ou mot de passe incorrecte</span>
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label>Email address</label>
+                  <input type="email" class="form-control" formControlName="username" placeholder="Email">
+                  <span class="help-block" *ngIf="!loginForm.get('username').valid && loginForm.get('username').touched">Entrer une adresse mail valid</span>
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" class="form-control" formControlName="password" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-flat m-b-30 m-t-30" [disabled]=!loginForm.valid >Sign in</button>
+                <div class="register-link m-t-15 text-center">
+                  <p>Don't have account ?
+                    <a href="#"> Sign Up Here</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- End Wrapper -->
+<!-- All Jquery -->

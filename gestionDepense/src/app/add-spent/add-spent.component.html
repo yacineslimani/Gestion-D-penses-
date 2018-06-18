@@ -1,0 +1,104 @@
+<div class="page-wrapper">
+  <!-- Bread crumb -->
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center">
+      <h3 class="text-primary">Ajouter une depense</h3>
+    </div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript:void(0)">Home</a>
+        </li>
+        <li class="breadcrumb-item active">Ajouter depense</li>
+      </ol>
+    </div>
+  </div>
+  <!-- End Bread crumb -->
+  <!-- Container fluid  -->
+  <div class="container-fluid">
+    <!-- Start Page Content -->
+    <form [formGroup]="addSpentForm" (ngSubmit)="onAddSpent()">
+      <div class="row">
+        <div class="col-lg-3">
+          <button type="submit" class="btn btn-success" [disabled]="!addSpentForm.valid">Sauvgarder</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="form-row">
+                <div class="form-group col-md-3">
+                  <label for="inputEmail4">Nom</label>
+                  <input type="text" class="form-control" formControlName="name" placeholder="Nom de la depense">
+                  <span class="help-block" *ngIf="!addSpentForm.get('name').valid && addSpentForm.get('name').touched">Entrer un Nom</span>
+                </div>
+                <div class="form-group col-md-3">
+                  <label for="inputEmail4">Montant</label>
+                  <input type="number" class="form-control" formControlName="amount" [readonly]="showSpentLine" placeholder="Montant de la depense">
+                  <span class="help-block" *ngIf="!addSpentForm.get('amount').valid && addSpentForm.get('amount').touched">Entrer un Montnt</span>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Description</label>
+                  <textarea class="form-control" formControlName="description"></textarea>
+                  <span class="help-block" *ngIf="!addSpentForm.get('description').valid && addSpentForm.get('description').touched">Entrer une Description</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-check">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" [checked]="showSpentLine" (change)="onShowSpentLine()">
+                  <label class="form-check-label" for="exampleCheck1">Cette depense contient des lignes</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="showSpentLine">
+        <div class="col-lg-12">
+          <div class="card">
+            <h4 class="card-title">Ajouter Ligne depense
+              <button type="button" (click)="onAddSpentLine()" class="btn btn-success btn-flat btn-addon btn-sm m-b-10 m-l-5">
+                <i class="fa fa-plus"></i>
+              </button>
+            </h4>
+            <div class="card-body">
+              <table class="table table-hover ">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Montant</th>
+                    <th>description</th>
+                    <th>Supprimer</th>
+                  </tr>
+                </thead>
+                <tbody formArrayName="spentLines">
+                  <tr *ngFor="let lineCtrl of addSpentForm.controls['spentLines'].controls, let i=index" [formGroupName]="i">
+                    <th scope="row">1</th>
+                    <td><input type="text" class="form-control" formControlName="name" placeholder="Nom de la depense"></td>
+                    <td><input type="number" class="form-control" formControlName="amount" (change)="amountChange()" placeholder="Montant de la depense"></td>
+                    <td><textarea formControlName="description" class="form-control"></textarea></td>
+                    <td>
+                      <button type="button" class="btn btn-danger" (click)="onDeleteSpentLine(i)">
+                        <i class="fa fa-trash-o"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- End PAge Content -->
+
+    <!-- End Container fluid  -->
+    <!-- footer -->
+    <footer class="footer"> © 2018 All rights reserved. Template designed by
+      <a href="https://colorlib.com">Colorlib</a>
+    </footer>
+    <!-- End footer -->
+  </div>

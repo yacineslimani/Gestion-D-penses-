@@ -1,0 +1,25 @@
+<div class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+      <!-- Sidebar navigation-->
+      <nav class="sidebar-nav">
+          <ul id="sidebarnav">
+              <li class="nav-devider"></li>
+              <li class="nav-label">Home</li>
+              <li> <a class="has-arrow "  aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu pointer">Dépenses</span></a>
+                  <ul aria-expanded="false" class="collapse">
+                      <li><a routerLink="/spent/list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Mes depsnes </a></li>
+                      <li><a routerLink="/spent/add" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Ajouter </a></li>
+                  </ul>
+              </li>
+              <li> <a class="has-arrow "  aria-expanded="false"><i class="fa fa-tachometer"></i><span class="hide-menu pointer">Historique</span></a>
+                <ul aria-expanded="false" class="collapse">
+                    <li *ngFor="let user of users" ><a routerLink="" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{user.userName}}</a></li>
+                </ul>
+            </li>
+          </ul>
+      </nav>
+      <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</div>
