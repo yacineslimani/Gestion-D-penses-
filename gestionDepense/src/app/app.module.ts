@@ -24,6 +24,7 @@ import { MainAppComponent } from './main-app/main-app.component';
 import { AuthService } from './service/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 import { AuthGuardService } from './service/auth-guard.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { AuthGuardService } from './service/auth-guard.service';
     AddSpentComponent,
     PageNotFoundComponent,
     SignInComponent,
-    MainAppComponent
+    MainAppComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,

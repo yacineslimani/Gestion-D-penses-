@@ -10,14 +10,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { SignInComponent } from './sign-in/sign-in.component';
 import { MainAppComponent } from './main-app/main-app.component';
 import { AuthGuardService } from './service/auth-guard.service';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 const appRoutes: Routes = [
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
   {path: 'login', component: SignInComponent},
   {path: 'spent', canActivate: [AuthGuardService], component: MainAppComponent, children: [
     {path: 'add', component: AddSpentComponent},
     {path: 'list', component: MainContentComponent}
   ] },
   { path: 'not-found', component: PageNotFoundComponent},
+  {path: 'signup', component: SignUpComponent},
   { path: '**', redirectTo: '/not-found'}
 ];
 

@@ -60,6 +60,11 @@ export class HttpServerService {
     return this.http.get<User[]>(this.serverIp + '/users/find/all', { headers: headers});
   }
 
+  signUp(userName, password, email) {
+    return this.http.post<any>(this.serverIp + '/users/sign-up',
+    {userName: userName, password: password, email: email}, {observe: 'response'});
+  }
+
 
 
 }
