@@ -12,14 +12,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class ApplicationUser {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	@NotNull
 	private String userName;
-
+	@NotNull
+	@Email
+	private String email;
+	@NotNull
 	private String password;
 
 	private String role;
@@ -58,6 +64,12 @@ public class ApplicationUser {
 	public void setUserSpents(List<Spent> userSpents) {
 		this.userSpents = userSpents;
 	}
-	
-	
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 }

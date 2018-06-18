@@ -21,6 +21,8 @@ import com.capgemini.domain.entity.Spent;
 import com.capgemini.domain.entity.ApplicationUser;
 import com.capgemini.domain.repository.ApplicationUserRepository;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value="users")
 public class UserController {
@@ -37,9 +39,15 @@ public class UserController {
 	}
 	
 	@PostMapping("/sign-up")
-    public void signUp(@RequestBody ApplicationUser user) {
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        applicationUserRepository.save(user);
+    public ResponseEntity<String> signUp(@Valid @RequestBody ApplicationUser user) {
+		ApplicationUser userTest =  applicationUserRepository.findByEmail(user.getEmail());
+		if(applicationUserRepository.findByEmail(user.getEmail()) == null){
+			user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+			applicationUserRepository.save(user);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} else {
+			return new ResponseEntity<String>("l'utilisateur existe déja",HttpStatus.BAD_REQUEST);
+		}
     }
 
 

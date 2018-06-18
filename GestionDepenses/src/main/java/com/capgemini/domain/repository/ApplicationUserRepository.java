@@ -6,5 +6,5 @@ import com.capgemini.domain.entity.ApplicationUser;
 
 public interface ApplicationUserRepository extends CrudRepository<ApplicationUser, Long>{
 	ApplicationUser findByUserName(String username);
-	boolean existsByuserName(String userName);
+	ApplicationUser findByEmail(String email);
 }
