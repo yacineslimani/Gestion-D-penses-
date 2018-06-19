@@ -5,13 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
@@ -32,6 +26,14 @@ public class ApplicationUser {
 
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade= CascadeType.ALL)
 	private List<Spent> userSpents = new ArrayList<Spent>();
+
+	@ManyToMany(cascade = { CascadeType.ALL})
+	@JoinTable(
+			name = "Projet_User",
+			joinColumns = { @JoinColumn(name = "user_id") },
+			inverseJoinColumns = { @JoinColumn(name = "projet_id") }
+	)
+	private List<Projet> projets = new ArrayList<Projet>();
 	
 	public Long getId() {
 		return id;
@@ -71,5 +73,13 @@ public class ApplicationUser {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public List<Projet> getProjets() {
+		return projets;
+	}
+
+	public void setProjets(List<Projet> projets) {
+		this.projets = projets;
 	}
 }

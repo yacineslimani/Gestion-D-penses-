@@ -70,18 +70,6 @@ public class UserController {
 	public ResponseEntity<String> login(){
 		return new ResponseEntity<String>(HttpStatus.OK);
 	}
-	
-
-	@RequestMapping(value="/curent", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String> curentUser(Authentication authentication){
-			
-		try {
-			return new ResponseEntity<String>(authentication.getName(),HttpStatus.OK);
-		} catch (NullPointerException e) {
-			return new ResponseEntity<String>(HttpStatus.UNAUTHORIZED);
-		}
-
-	}
 
 
 }

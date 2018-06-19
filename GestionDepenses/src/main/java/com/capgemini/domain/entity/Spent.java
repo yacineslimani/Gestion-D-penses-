@@ -31,6 +31,10 @@ public class Spent {
 	private String description;
 	private double amount;
 	private Date date;
+
+	@ManyToOne
+	@JoinColumn(name = "projetId")
+	private Projet projet;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -86,10 +90,12 @@ public class Spent {
 	public void setUser(ApplicationUser user) {
 		this.user = user;
 	}
-	
-	
-	
-	
-	
-	
+
+	public Projet getProjet() {
+		return projet;
+	}
+
+	public void setProjet(Projet projet) {
+		this.projet = projet;
+	}
 }

@@ -52,7 +52,7 @@ public class DepenseController {
 	
 	@RequestMapping(value="find/all", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Spent>  findAllSpent(Authentication authentication){
-		ApplicationUser currentUser = userRepository.findByUserName(authentication.getName());
+		ApplicationUser currentUser = userRepository.findByEmail(authentication.getName());
 		currentUser.getUserSpents();
 		return currentUser.getUserSpents();
 	}
@@ -60,7 +60,7 @@ public class DepenseController {
 	@RequestMapping(value="add", method=RequestMethod.POST, produces=MediaType.APPLICATION_JSON_VALUE)
 	public void addSpent(@RequestBody Spent spent, Authentication authentication){
 		
-		ApplicationUser currentUser = userRepository.findByUserName(authentication.getName());
+		ApplicationUser currentUser = userRepository.findByEmail(authentication.getName());
 		spent.setUser(currentUser);
 		for (SpentLine spentLine : spent.getSpents()) {
 			spentLine.setSpent(spent);
