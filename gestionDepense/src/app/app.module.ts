@@ -49,7 +49,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [SpentDataService, HttpServerService, , CookieService, AuthGuardService, AuthService],
+  providers: [SpentDataService, HttpServerService, CookieService, AuthGuardService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
